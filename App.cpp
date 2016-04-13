@@ -30,7 +30,7 @@
 #include "ExtractMotion.h"
 #include "ColorSegmentation.h"
 #include "ExtractBlobs.h"
-#include "GetBlobsAngles.h"
+#include "GetBlobStats.h"
 #include "Tracker.h"
 #include "MovingAverage.h"
 #include "RecordVideo.h"
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     NewPipelinePluginVector["Erosion"] = &CreatePipelinePluginVector<Erosion>;
     NewPipelinePluginVector["Dilation"] = &CreatePipelinePluginVector<Dilation>;
     NewPipelinePluginVector["ExtractBlobs"] = &CreatePipelinePluginVector<ExtractBlobs>;
-    NewPipelinePluginVector["GetBlobsAngles"] = &CreatePipelinePluginVector<GetBlobsAngles>;
+    NewPipelinePluginVector["GetBlobStats"] = &CreatePipelinePluginVector<GetBlobStats>;
     NewPipelinePluginVector["TrackBlobs"] = &CreatePipelinePluginVector<Tracker>;
     NewPipelinePluginVector["SafeErosion"] = &CreatePipelinePluginVector<SafeErosion>;
     NewPipelinePluginVector["FrameDifference"] = &CreatePipelinePluginVector<FrameDifference>;

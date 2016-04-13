@@ -17,7 +17,7 @@
 /*    along with USE Tracker.  If not, see <http://www.gnu.org/licenses/>.    */
 /*----------------------------------------------------------------------------*/
 
-#include "GetBlobsAngles.h"
+#include "GetBlobStats.h"
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -29,11 +29,18 @@
 using namespace cv;
 using namespace std;
 
-GetBlobsAngles::GetBlobsAngles () : PipelinePlugin()
+GetBlobStats::GetBlobStats() : PipelinePlugin()
 {
 }
 
-void GetBlobsAngles::Apply()
+void GetBlobStats::Reset()
+{
+//    multithreaded = true;
+    SetMaxSize(size);
+    result = Mat::zeros (pipeline->height, pipeline->width, CV_8U);
+}
+
+void GetBlobStats::Apply()
 {
     vector<Blob>& blobs = pipeline->parent->blobs;
     vector<StatData> stats;
@@ -93,7 +100,8 @@ void GetBlobsAngles::Apply()
 //    cout << "--------" << endl;
 }
 
-void GetBlobsAngles::OutputHud (Mat& hud)
+
+void GetBlobStats::OutputHud (Mat& hud)
 {
     char str[32];
     Point pos;
@@ -121,15 +129,32 @@ void GetBlobsAngles::OutputHud (Mat& hud)
 }
 
 
-void GetBlobsAngles::LoadXML (FileNode& fn)
+
+void GetBlobStats::LoadXML (FileNode& fn)
 {
     if (!fn.empty())
     {
 	active = (int)fn["Active"];
+	size = (int)fn["Size"];
+	//outputFilename = (string)fn["OutputFilename"];
     }
 }
 
-void GetBlobsAngles::SaveXML (FileStorage& fs)
+void GetBlobStats::SaveXML (FileStorage& fs)
 {
     fs << "Active" << active;
+    fs << "Size" << size;
+    //fs << "OutputFilename" << outputFilename;
 }
+
+void GetBlobStats::SetMaxSize (int s)
+{
+    size = s;
+	cout << "Setting maximum size for exporting blobs to " << s << endl;
+    structuringElement = getStructuringElement(
+	MORPH_ELLIPSE,
+	Size (2 * size + 1, 2 * size + 1),
+	Point (size, size)
+	);
+}
+

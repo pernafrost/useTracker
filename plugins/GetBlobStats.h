@@ -17,15 +17,22 @@
 /*    along with USE Tracker.  If not, see <http://www.gnu.org/licenses/>.    */
 /*----------------------------------------------------------------------------*/
 
-#ifndef GETBLOBSANGLES_H
-#define GETBLOBSANGLES_H
+#ifndef GETBLOBSTATS_H
+#define GETBLOBSTATS_H
 
 #include "PipelinePlugin.h"
 
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
-class GetBlobsAngles : public PipelinePlugin
+
+class GetBlobStats : public PipelinePlugin
 {
 public:
+
+    int size = 1000;
+    cv::Mat structuringElement;
+    cv::Mat result;
 
     struct StatData
     {
@@ -43,13 +50,21 @@ public:
 	int maxdist;
     };
 
-    GetBlobsAngles();
 
+    bool exportImages = false;
+    std::string outputImageFile;
+
+    GetBlobStats();
+
+    void Reset();
     void Apply();
-    void OutputHud (cv::Mat& hud);
-
     void LoadXML (cv::FileNode& fn);
     void SaveXML (cv::FileStorage& fs);
+    void OutputHud (cv::Mat& hud);
+    void SetMaxSize(int s);
+
+
 };
 
 #endif
+
