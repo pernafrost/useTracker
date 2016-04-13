@@ -145,7 +145,6 @@ void DialogStats::OnFilePickerCtrl1FileChanged(wxFileDirPickerEvent& event)
 	    for (auto f : plugin)
 	    {
 		f->outputImageFile = filename.GetFullPath();
-		cout << "Exporting blob images to file "
 	    }
 	}
     }
