@@ -100,7 +100,7 @@ DialogStats::DialogStats(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
 
 	Connect(ID_SPINCTRL1,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&DialogStats::SetMaximumExportSize);
 	Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&DialogStats::OnCheckBoxOutputClick);
-	Connect(ID_FILEPICKERCTRL1,wxEVT_COMMAND_FILEPICKER_CHANGED,(wxObjectEventFunction)&DialogStats::OnFilePickerCtrl1FileChanged);
+	//Connect(ID_FILEPICKERCTRL1,wxEVT_COMMAND_FILEPICKER_CHANGED,(wxObjectEventFunction)&DialogStats::OnFilePickerCtrl1FileChanged);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&DialogStats::OnButtonOkClick);
 	//*)
 
@@ -132,7 +132,7 @@ void DialogStats::OnButtonApplyClick(wxCommandEvent& event)
 {
 }
 
-
+/*
 void DialogStats::OnFilePickerCtrl1FileChanged(wxFileDirPickerEvent& event)
 {
     wxFileName filename (FilePickerCtrl1->GetFileName());
@@ -149,6 +149,7 @@ void DialogStats::OnFilePickerCtrl1FileChanged(wxFileDirPickerEvent& event)
 	}
     }
 }
+*/
 
 void DialogStats::OnCheckBoxOutputClick(wxCommandEvent& event)
 {

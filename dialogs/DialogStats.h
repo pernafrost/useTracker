@@ -70,7 +70,7 @@ class DialogStats: public wxDialog
 		void OnButtonApplyClick(wxCommandEvent& event);
 		void OnButtonOkClick(wxCommandEvent& event);
 		void SetMaximumExportSize(wxSpinEvent& event);
-		void OnFilePickerCtrl1FileChanged(wxFileDirPickerEvent& event);
+		//void OnFilePickerCtrl1FileChanged(wxFileDirPickerEvent& event);
 		void OnCheckBoxOutputClick(wxCommandEvent& event);
 		void OnKeyDown(wxKeyEvent& event);
 		//*)
